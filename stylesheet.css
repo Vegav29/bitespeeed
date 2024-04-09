@@ -1,0 +1,172 @@
+html {
+    background-color: #fff;
+    color: black;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+}
+
+* {
+    margin: 0;
+    font-family: 'Rubik', sans-serif;
+}
+body {
+  margin: 0;
+}
+
+.navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: wheat;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 100px;
+  line-height: 100px;
+  display: flex;
+  justify-content: space-between; /* Adjusted to space between logo and links */
+  align-items: left;
+}
+
+.navigation img.logo {
+  height: 70px; /* Adjusted logo height */
+  width: 70px; /* Adjusted logo width */
+  margin-left: 20px; /* Adjusted margin for logo */
+}
+
+.navigation ul {
+  display: flex;
+  margin-right: 20px; /* Adjusted margin for the right side of links */
+}
+
+.navigation a {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bolder;
+  padding: 0 20px;
+  border-bottom: 1px solid black;
+  display: inline-block;
+}
+
+
+
+
+.navigation a:hover {
+  background-color: black; /* Change background color on hover if desired */
+}
+
+/* Clearfix to clear floats */
+.navigation::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.navigation a:hover {
+    background-color: black;
+    color: antiquewhite;
+}
+
+.main {
+  
+    position: fixed;
+    padding-top: 50px;
+    padding-bottom: 15px;
+    height: 400px;
+    color: white;
+    font-size: 100%;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 6.5px;
+    text-align: center; 
+}
+
+
+.form-container {
+    width: 1111%; 
+    margin: 0 auto; 
+    
+}
+h1 {
+    color: black; 
+    font-family: 'Ahood', sans-serif; 
+    font-size: 30px; 
+    font-weight: bold; 
+    margin-bottom: 15px; 
+    text-align: center; 
+  }
+  .form-container {
+    position: fixed
+    padding: 20px;
+}
+  
+.form-container label {
+    margin-bottom: 10px;
+  }
+  
+.form-container input {
+    margin-top: 5px;
+  }
+  
+  
+  .form-container {
+    padding: 20px;
+  }
+input:focus {
+    border: 2px solid #ff0000; 
+    box-shadow: 0 0 5px #00ff00; 
+    border: 1px solid #0000ff;
+  box-shadow: 0 0 3px #0000ff;
+  }
+  #responseContainer {
+    position:fixed;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    margin-top: 20px;
+    overflow: hidden;
+    margin: auto; 
+    width: 60%;
+    
+    
+      
+  }
+
+
+#responseContainer p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: black;
+   
+   
+
+}
+
+#responseContainer p.status {
+    font-weight: bold;
+    color: black; 
+}
+
+#responseContainer p.error {
+    font-weight: bold;
+    color: #f44336; 
+}
+marquee {
+  background-color: gray;
+  color: white;
+  
+  
+}
+form {
+  
+  margin-bottom: 20px; 
+
+}

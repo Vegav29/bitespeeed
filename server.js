@@ -10,6 +10,7 @@ const app = express();
 const mongoUrl = 'mongodb+srv://bj:bj@cluster0.q48qwbs.mongodb.net/?retryWrites=true&w=majority'; 
 const dbName = 'contacts';
 const collectionName = 'contacts';
+const port=4000;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '')));

@@ -1,19 +1,19 @@
+
+const Fingerprint = require('fingerprintjs2');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const express = require('express');
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
-const Fingerprint = require('fingerprintjs2');
 
 const app = express();
 const port = 4000;
 
-const mongoUrl = 'mongodb+srv://vega:vega2003@cluster0.dpfy1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'; 
+const mongoUrl = process.env.MONGODB_URI; // Use environment variable for MongoDB URL
 const dbName = 'contacts';
 const collectionName = 'contacts';
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '')));
 
 let client;
 let db;
@@ -38,15 +38,7 @@ async function connectToMongo() {
 }
 
 // Start the server after the MongoDB connection is established
-connectToMongo()
-    .then(() => {
-        app.listen(port, () => {
-            console.log(`Server is running on port ${port}`);
-        });
-    })
-    .catch((err) => {
-        console.error('Unable to start the server:', err);
-    });
+connectToMongo();
 
 async function findContactByFingerprint(fingerprint) {
     if (!db) {
@@ -57,10 +49,12 @@ async function findContactByFingerprint(fingerprint) {
     return db.collection(collectionName).findOne({ fingerprint: fingerprint });
 }
 
-async function createPrimaryContact(fingerprint) {
+async function createPrimaryContact(fingerprint, email, phoneNumber) {
     const contact = {
         _id: uuidv4(),
         fingerprint,
+        email,
+        phoneNumber,
         linkPrecedence: 'primary',
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -70,11 +64,13 @@ async function createPrimaryContact(fingerprint) {
     return contact;
 }
 
-async function createSecondaryContact(primaryContactId, fingerprint) {
+async function createSecondaryContact(primaryContactId, fingerprint, email, phoneNumber) {
     const contact = {
         _id: uuidv4(),
         linkedId: primaryContactId,
         fingerprint,
+        email,
+        phoneNumber,
         linkPrecedence: 'secondary',
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -84,9 +80,6 @@ async function createSecondaryContact(primaryContactId, fingerprint) {
     return contact;
 }
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '', 'index.html'));
-});
 app.post('/identify', async (req, res) => {
     const { fingerprint, email, phoneNumber } = req.body;
 
@@ -130,43 +123,4 @@ app.post('/identify', async (req, res) => {
     }
 });
 
-
-async function createPrimaryContact(fingerprint, email, phoneNumber) {
-    const contact = {
-        _id: uuidv4(),
-        fingerprint,
-        email,
-        phoneNumber,
-        linkPrecedence: 'primary',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-    };
-
-    await db.collection(collectionName).insertOne(contact);
-    return contact;
-}
-
-async function createSecondaryContact(primaryContactId, fingerprint, email, phoneNumber) {
-    const contact = {
-        _id: uuidv4(),
-        linkedId: primaryContactId,
-        fingerprint,
-        email,
-        phoneNumber,
-        linkPrecedence: 'secondary',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-    };
-
-    await db.collection(collectionName).insertOne(contact);
-    return contact;
-}
-
-
-process.on('SIGINT', async () => {
-    if (client) {
-        await client.close();
-        console.log('MongoDB connection closed');
-    }
-    process.exit();
-});
+module.exports = app;

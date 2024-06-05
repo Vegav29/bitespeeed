@@ -80,9 +80,8 @@ async function createSecondaryContact(primaryContactId, fingerprint, email, phon
     return contact;
 }
 
-app.post('https://bitespeeed-cwtx.vercel.app/identify', async (req, res) => {
+app.post('/identify', async (req, res) => {
     const { fingerprint, email, phoneNumber } = req.body;
-
     if (!fingerprint) {
         return res.status(400).json({ error: 'Fingerprint not provided' });
     }

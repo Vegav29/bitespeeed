@@ -15,9 +15,10 @@ const cors = require('cors');
 
 // Define CORS options
 const corsOptions = {
-  origin: 'https://bitespeeed-yhi6.vercel.app/',
+  origin: '*',
   methods: ['GET', 'POST'], // Allow only GET and POST requests
-  credentials: true // Allow credentials (cookies, authorization headers, etc.)
+  credentials: true ,// Allow credentials (cookies, authorization headers, etc.)
+  optionSuccessStatus:200
 };
 
 // Enable CORS with the defined options
@@ -95,9 +96,7 @@ async function createSecondaryContact(primaryContactId, fingerprint) {
     return contact;
 }
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '', 'index.html'));
-});
+
 app.post('/identify', async (req, res) => {
     const { fingerprint, email, phoneNumber } = req.body;
 

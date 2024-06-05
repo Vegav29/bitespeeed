@@ -11,6 +11,17 @@ const port = 4000;
 const mongoUrl = 'mongodb+srv://vega:vega2003@cluster0.dpfy1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'; 
 const dbName = 'contacts';
 const collectionName = 'contacts';
+const cors = require('cors');
+
+// Define CORS options
+const corsOptions = {
+  origin: 'https://bitespeeed.vercel.app/',
+  methods: ['GET', 'POST'], // Allow only GET and POST requests
+  credentials: true // Allow credentials (cookies, authorization headers, etc.)
+};
+
+// Enable CORS with the defined options
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '')));

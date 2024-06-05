@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const Fingerprint = require('fingerprintjs2');
-
 const app = express();
 const port = 4000;
 
@@ -18,7 +17,8 @@ const corsOptions = {
   origin: '*',
   methods: ['GET', 'POST'], // Allow only GET and POST requests
   credentials: true ,// Allow credentials (cookies, authorization headers, etc.)
-  optionSuccessStatus:200
+  optionSuccessStatus:200,
+  Access-Control-Allow-Headers : Origin, Content-Type, Accept
 };
 
 // Enable CORS with the defined options
@@ -29,7 +29,10 @@ app.use(express.static(path.join(__dirname, '')));
 
 let client;
 let db;
-
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authortization');
+    res.setHeader('Acces-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
 async function connectToMongo() {
     client = new MongoClient(mongoUrl, {
         serverApi: {

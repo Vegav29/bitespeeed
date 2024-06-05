@@ -15,7 +15,7 @@ const collectionName = 'contacts';
 
 // Define CORS options
 const corsOptions = {
-  origin: '*'
+  origin: 'https://bitespeeed-yhi6.vercel.app/'
   methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allow specific methods
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   optionsSuccessStatus: 200,

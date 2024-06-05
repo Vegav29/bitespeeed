@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,37 +91,58 @@
         p {
             margin: 5px 0;
         }
+
+        
+
+        
     </style>
+
 </head>
 <body>
     <div class="navigation">
+    
         <img src="/934fc68fd25d4ff79b0529b2fd4c2b64-removebg-preview.png" alt="logo" class="logo" style="height: 127px; width: 230px;">
-        <ul>
+
+
+       
+          <ul>
             <a href="#">Home</a>
             <a href="#">BESTSELLERS</a>
             <a href="#">PRODUCTS</a>
             <a href="#">ZAMAZONPAY</a>
             <a href="#">cancel order</a>
             <a href="#">Contact us</a>
-        </ul>
-        <br>
-        <br>
+            
+            
+          </ul>
+          <br>
+          <br>
+
     </div>
-    <div class="main">
-        <h1>Sign in</h1>
-        <form id="contactForm" action="/api" method="post">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+    
+        <div class="main">
+            <h1>Sign in</h1>
+
+            <form id="contactForm" action="http://localhost:4000/identify" method="post">
+                <label for="email">Email:</label>
+                 <input type="email" id="email" name="email" required>
+
             <br>
-            <label for="phoneNumber">Phone Number:</label>
-            <input type="tel" id="phoneNumber" name="phoneNumber" required>
-            <!-- Hidden field for fingerprint -->
-            <input type="hidden" id="fingerprint" name="fingerprint" value="">
-            <br>
-            <button type="submit">submit</button>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <!-- Hidden field for fingerprint -->
+                <input type="hidden" id="fingerprint" name="fingerprint" value="">
+
+                    <br>
+
+                <button type="submit">submit</button>
+        
         </form>
         <div id="responseContainer"></div>
-    </div>
+        </div>
+    
     <script>
         document.getElementById('contactForm').addEventListener('submit', function (event) {
             event.preventDefault();
@@ -166,5 +188,6 @@
                 });
         });
     </script>
+
 </body>
-</html>
+</html> 

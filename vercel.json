@@ -11,7 +11,7 @@
     }
   ],
   "routes": [
-    { "src": "/identify", "dest": "/server.js" },
+    { "src": "/", "dest": "/server.js" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

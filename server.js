@@ -15,7 +15,7 @@ const collectionName = 'contacts';
 
 // Define CORS options
 const corsOptions = {
-  origin: 'https://bitespeeed-yhi6.vercel.app/'
+  origin: ['https://bitespeeed.vercel.app', 'https://bitespeeed-yhi6.vercel.app'],
   methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allow specific methods
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   optionsSuccessStatus: 200,
@@ -27,11 +27,15 @@ app.use(cors(corsOptions));
 
 // Set custom headers for CORS
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://bitespeeed.vercel.app/');
+  res.setHeader('Access-Control-Allow-Origin', 'https://bitespeeed.vercel.app');
+  res.setHeader('Access-Control-Allow-Origin', 'https://bitespeeed-yhi6.vercel.app');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
   next();
 });
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '')));

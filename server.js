@@ -15,7 +15,7 @@ const cors = require('cors');
 
 // Define CORS options
 const corsOptions = {
-  origin: 'https://bitespeeed.vercel.app/',
+  origin: 'https://bitespeeed-yhi6.vercel.app/',
   methods: ['GET', 'POST'], // Allow only GET and POST requests
   credentials: true // Allow credentials (cookies, authorization headers, etc.)
 };
